@@ -45,9 +45,10 @@ def _reshape(x_data, shape):
         return np.transpose(np.array(x_data), (0, 1, 3, 2))
     elif shape == (60, 16, 1):
         return np.transpose(np.array(x_data), (0, 3, 2, 1))
+    elif shape == (16, 60, 1):
+        return np.transpose(np.array(x_data), (0, 2, 3, 1))
     elif shape == (60, 16):
         return np.squeeze(np.transpose(np.array(x_data), (0, 1, 3, 2)))
-
     raise ValueError("Invalid shape", shape)
 
 
