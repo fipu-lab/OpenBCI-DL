@@ -6,10 +6,9 @@ x, y = load_data(["data/robert_sajina", "data/zuza"],
                  labels=["left", "right", "jump", "none"],
                  shape=(60, 16))
 
-model = CNN_1D_model()
+model = CNN_1D_model(num_classes=len(set(y)))
 model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
-
-model.fit(x, y, epochs=10, batch_size=64, validation_split=0.3, shuffle=True)
+model.fit(x, y, epochs=5, batch_size=64, validation_split=0.3)

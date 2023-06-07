@@ -14,7 +14,7 @@ def read_data(directory_path="data/", label=0):
     return x, y
 
 
-def load_data(directory_paths="data/", labels=[], window_size=1, shape=(1, 60, 16)):
+def load_data(directory_paths="data/", labels=[], window_size=1, shape=(1, 60, 16), shuffle=True):
     for s in shape:
         assert s in [60, 16, 1]
 
@@ -31,7 +31,11 @@ def load_data(directory_paths="data/", labels=[], window_size=1, shape=(1, 60, 1
                 y.append(dy[n])
 
     x = _reshape(x, shape)
-    return np.array(x), np.array(y)
+    x, y = np.array(x), np.array(y)
+    if shuffle:
+        ind = np.random.randint(len(y), size=len(y))
+        x, y = x[ind], y[ind]
+    return x, y
 
 
 def _reshape(x_data, shape):
