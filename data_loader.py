@@ -33,7 +33,8 @@ def load_data(directory_paths="data/", labels=[], window_size=1, shape=(1, 60, 1
     x = _reshape(x, shape)
     x, y = np.array(x), np.array(y)
     if shuffle:
-        ind = np.random.randint(len(y), size=len(y))
+        ind = np.arange(len(y))
+        np.random.shuffle(ind)
         x, y = x[ind], y[ind]
     return x, y
 
